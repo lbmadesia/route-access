@@ -15,7 +15,7 @@ dynamicroute.routeAccess = (app, path) => {
                 }
                 else {
                     console.log('folder = ' + file[i], 'index = ' + i);
-                    await module.exports.routeAccess(app, path + '/' + file[i]);
+                    await dynamicroute.routeAccess(app, path + '/' + file[i]);
                 }
             };
             resolve(true);
