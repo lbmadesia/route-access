@@ -1,6 +1,6 @@
 {
   "name": "route-access",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "it create route directory somewhere for creating route file and route and route code without import and require for each file in main.js, it's for express js ",
   "main": "routeAccess.js",
   "scripts": {
