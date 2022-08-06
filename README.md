@@ -32,6 +32,18 @@ routeAccess.access(app,routePath).then((res)=>{
 ```
 
 
+## info
+you can also prefix route base on directory it's optional parameter  as if 'panel'is directory name and admin is prefix value.
+
+```
+const routePrefix = {'panel':'admin'};
+const routePath = 'backend/routes';
+routeAccess.access(app,routePath,routePrefix).then((res)=>{
+  app.listen(8080);
+}).catch((error)=>{
+  console.log('Route Build Error : ',error);
+});
+```
 
 ## Issues
 

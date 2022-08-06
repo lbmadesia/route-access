@@ -2,20 +2,22 @@ const fs = require('fs').promises;
 
 // start route access
 const dynamicroute = {};
-dynamicroute.routeAccess = (app, path) => {
+dynamicroute.routeAccess = (app, path,prefix = {},predir=false) => {
     return new Promise(async (resolve, reject) => {
         try {
             const file = await fs.readdir('./' + path);
             for (let i = 0; i < file.length; ++i) {
                 const checker = await fs.lstat('./' + path + '/' + file[i]);
                 if (checker.isFile()) {
-                    console.log('file = ' + file[i], 'index = ' + i);
                     let fmodule = require('../../' + path + '/' + file[i]);
-                    app.use('/admin', fmodule);
+                    if(predir && prefix.hasOwnProperty(predir))
+                        $prefixval = '/'+prefix[predir];
+                    else
+                        $prefixval = '/';
+                    app.use($prefixval, fmodule);
                 }
                 else {
-                    console.log('folder = ' + file[i], 'index = ' + i);
-                    await dynamicroute.routeAccess(app, path + '/' + file[i]);
+                    await dynamicroute.routeAccess(app, path + '/' + file[i],prefix,file[i]);
                 }
             };
             resolve(true);
